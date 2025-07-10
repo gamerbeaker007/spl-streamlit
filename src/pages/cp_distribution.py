@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 
-from src.statics_enums import rarity_order, edition_mapping, foil_mapping, foil_order
+from src.statics_enums import rarity_order, edition_mapping, foil_mapping, foil_order, rarity_colors
 
 group_columns = ['edition', 'edition_name', 'rarity', 'rarity_name']
 
@@ -44,9 +44,14 @@ def add_chart_edition_total_cp(df):
 
 def add_chart_edition_rarity(df):
     # Second chart: CP per edition_name and grouped by rarity
+    # Group data by edition_name and rarity_name, summing CP
     cp_per_edition_rarity = df.groupby(["edition_name", "rarity_name"], observed=False)["cp"].sum().reset_index()
+
+    # Create the figure for the chart, applying the custom color map for rarity
     fig2 = px.bar(cp_per_edition_rarity, x="edition_name", y="cp", color="rarity_name", barmode="group",
-                  title="CP per Edition and Rarity")
+                  title="CP per Edition and Rarity", color_discrete_map=rarity_colors)
+
+    # Display the chart in Streamlit
     st.plotly_chart(fig2)
 
 
