@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 
+from src.components import filter_panel
 from src.statics_enums import rarity_order, edition_mapping, foil_mapping, foil_order, rarity_colors
 
 group_columns = ['edition', 'edition_name', 'rarity', 'rarity_name']
@@ -29,22 +30,16 @@ def add_chart_edition_foil(df):
 
 
 def add_chart_edition_total_cp(df):
-    # Apply the edition mapping to sort
-    df['edition_name'] = df['edition'].map(edition_mapping)
-    df['edition_name'] = pd.Categorical(df['edition_name'], categories=edition_mapping.values(), ordered=True)
-
-    # Apply rarity order to the dataframe for sorting
-    df['rarity_name'] = pd.Categorical(df['rarity_name'], categories=rarity_order, ordered=True)
-
-    # First chart: summarize CP per edition_name
     cp_per_edition = df.groupby("edition_name", observed=False)["cp"].sum().reset_index()
+
+    # Create the bar chart, using edition_name for the x-axis
     fig1 = px.bar(cp_per_edition, x="edition_name", y="cp", title="Total CP per Edition")
+
+    # Display the chart
     st.plotly_chart(fig1)
 
 
 def add_chart_edition_rarity(df):
-    # Second chart: CP per edition_name and grouped by rarity
-    # Group data by edition_name and rarity_name, summing CP
     cp_per_edition_rarity = df.groupby(["edition_name", "rarity_name"], observed=False)["cp"].sum().reset_index()
 
     # Create the figure for the chart, applying the custom color map for rarity
@@ -60,6 +55,26 @@ def get_page(df):
 
     # Display charts in Streamlit
     st.title('Splinterlands CP Analysis')
+    edition = st.multiselect(
+        "Edition",
+        options=list(edition_mapping.values()),
+        default=[]
+    )
+
+    if (edition):
+        df = df[df['edition_name'].isin(edition)]
+
+
+    df['edition_name'] = df['edition'].map(lambda x: edition_mapping.get(x) if x in edition_mapping else None)
+
+    # Ensure 'edition_name' is categorical and ordered only for the editions present in the dataframe
+    df['edition_name'] = pd.Categorical(df['edition_name'], categories=df['edition_name'].dropna().unique(),
+                                        ordered=True)
+
+    # Apply rarity order to the dataframe for sorting
+    df['rarity_name'] = pd.Categorical(df['rarity_name'], categories=rarity_order, ordered=True)
+
+
     add_chart_edition_total_cp(df)
     add_chart_edition_rarity(df)
     add_chart_edition_foil(df)
