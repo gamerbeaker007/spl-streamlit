@@ -13,3 +13,8 @@ icon = ':bar_chart:'
 path = 'src/pages/burned_distribution.py'
 name = 'Burned BCX'
 icon = ':bar_chart:'
+
+[[pages]]
+path = 'src/pages/cp_distribution.py'
+name = 'CP Distribution'
+icon = ':bar_chart:'

@@ -13,7 +13,8 @@ edition_mapping = {
     8: 'Rift',
     10: 'Soulbound',
     12: 'Rebellion',
-    13: 'Soulbound Rebellion'
+    13: 'Soulbound Rebellion',
+    14: 'Conclave Arcana'
 }
 
 edition_img_mapping = {
@@ -28,7 +29,8 @@ edition_img_mapping = {
     8: 'rift',
     10: 'soulbound',
     12: 'rebellion',
-    13: 'soulboundrb'
+    13: 'soulboundrb',
+    14: 'conclave'
 }
 
 rarity_mapping = {
@@ -57,6 +59,22 @@ rarity_order = [
     'Rare',
     'Epic',
     'Legendary'
+]
+
+foil_mapping = {
+    0: 'Regular Foil',
+    1: 'Gold Foil',
+    2: 'Gold Foil Arcane',
+    3: 'Black Foil',
+    4: 'Black Foil Arcane'
+}
+
+foil_order = [
+    'Regular Foil',
+    'Gold Foil',
+    'Gold Foil Arcane',
+    'Black Foil',
+    'Black Foil Arcane'
 ]
 
 edition_order = [edition_mapping[num] for num in sorted(edition_mapping)]
