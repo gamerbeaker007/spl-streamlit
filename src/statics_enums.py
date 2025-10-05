@@ -1,6 +1,5 @@
 # Edition and Rarity mappings
 
-
 edition_mapping = {
     0: 'Alpha',
     1: 'Beta',
@@ -14,7 +13,9 @@ edition_mapping = {
     10: 'Soulbound',
     12: 'Rebellion',
     13: 'Soulbound Rebellion',
-    14: 'Conclave Arcana'
+    14: 'Conclave Arcana',
+    15: 'Foundation',
+    16: 'Soulbound Foundation'
 }
 
 edition_img_mapping = {
@@ -30,7 +31,9 @@ edition_img_mapping = {
     10: 'soulbound',
     12: 'rebellion',
     13: 'soulboundrb',
-    14: 'conclave'
+    14: 'conclave',
+    15: 'foundations',
+    16: 'foundations'
 }
 
 rarity_mapping = {
@@ -45,6 +48,13 @@ rarity_to_level = {
     'Rare': '8',
     'Epic': '6',
     'Legendary': '4'
+}
+
+rarity_to_level_foundation = {
+    'Common': '5',
+    'Rare': '4',
+    'Epic': '3',
+    'Legendary': '2'
 }
 
 rarity_colors = {
