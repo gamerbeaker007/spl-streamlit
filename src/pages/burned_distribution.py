@@ -81,8 +81,4 @@ def _add_pivot_rarity_table(df, column):
     st.dataframe(
         pivot_df,
         hide_index=True,
-        column_config={
-            "Edition": st.column_config.Column(width="2000px")  # Set width of Edition column
-        },
-        use_container_width=True  # Use container width for the rest of the columns
     )
