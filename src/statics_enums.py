@@ -15,7 +15,9 @@ edition_mapping = {
     13: 'Soulbound Rebellion',
     14: 'Conclave Arcana',
     15: 'Foundation',
-    16: 'Soulbound Foundation'
+    16: 'Soulbound Foundation',
+    17: 'Conclave Extra',
+    18: 'Conclave Reward',
 }
 
 edition_img_mapping = {
@@ -33,7 +35,9 @@ edition_img_mapping = {
     13: 'soulboundrb',
     14: 'conclave',
     15: 'foundations',
-    16: 'foundations'
+    16: 'foundations',
+    17: 'extra',
+    18: 'reward'
 }
 
 rarity_mapping = {
